@@ -65,5 +65,6 @@ export class UserFormComponent {
 
   onSubmit() {
     alert(JSON.stringify(this.userForm.value));
+    this.userForm.reset();
   }
 }

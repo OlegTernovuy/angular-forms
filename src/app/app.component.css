@@ -15,11 +15,9 @@ header {
 header ul {
   display: flex;
   gap: 1.5rem;
-  list-style: none;
 }
 
 header a {
-  text-decoration: none;
   color: var(--link-color);
 }
 
