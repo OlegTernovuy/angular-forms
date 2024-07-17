@@ -6,6 +6,8 @@ import {
 } from '@angular/forms';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs';
 
 import { DataService } from '../data.service';
 import { Post, sendedPost } from './post.model';
@@ -31,17 +33,33 @@ export class PostsComponent {
   });
 
   ngOnInit(): void {
-    this.dataService.getData().subscribe((result: Post[]) => {
-      this.data = result;
-    });
+    this.dataService
+      .getData()
+      .pipe(
+        catchError((err) => {
+          console.error('Error fetching data', err);
+          return of([]);
+        })
+      )
+      .subscribe((result: Post[]) => {
+        this.data = result;
+      });
   }
 
   onSubmit() {
-    this.dataService
-      .postData(this.postFormData.value)
-      .subscribe((result: sendedPost) => {
-        this.postedData = result;
-      });
-    this.postFormData.reset();
+    if (this.postFormData.valid) {
+      this.dataService
+        .postData(this.postFormData.value)
+        .pipe(
+          catchError((err) => {
+            console.error('Error post data', err);
+            return of(null);
+          })
+        )
+        .subscribe((result: sendedPost | null) => {
+          this.postedData = result;
+          this.postFormData.reset();
+        });
+    }
   }
 }
