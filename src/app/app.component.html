@@ -1,0 +1,34 @@
+<header>
+  <h1>Angular App</h1>
+  <nav>
+    <ul>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/userForm"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >User Form</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/userPosts"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Posts</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<router-outlet />

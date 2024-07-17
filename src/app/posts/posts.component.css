@@ -1,0 +1,44 @@
+.userPosts {
+  padding: 1rem 0;
+}
+
+.sendPost {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sendPost form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .sendPost form {
+    flex-direction: column;
+  }
+}
+
+.sendPost button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0.2rem 0.5rem;
+}
+
+.sendPost button:disabled {
+  background: var(--disable-color);
+}
+
+.userPosts h3 {
+  margin: 1rem 0;
+}
+
+.userPosts ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}

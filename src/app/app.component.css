@@ -1,0 +1,26 @@
+@import "../variables.css";
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1em;
+  }
+}
+
+header ul {
+  display: flex;
+  gap: 1.5rem;
+}
+
+header a {
+  color: var(--link-color);
+}
+
+header li > a.active {
+  color: var(--active-link-color);
+}

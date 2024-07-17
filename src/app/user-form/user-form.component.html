@@ -1,0 +1,54 @@
+<div class="userFormWrapper">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="inputBlock">
+      <div class="inputWrapper">
+        <label for="first-name">First Name: </label>
+        <input id="first-name" type="text" formControlName="firstName" />
+      </div>
+      <div *ngIf="firstName">
+        <div *ngIf="firstName?.hasError('required')">
+          FirstName is required.
+        </div>
+        <div *ngIf="firstName.hasError('minlength')">
+          FirstName must be at least 2 characters long.
+        </div>
+      </div>
+      <div class="inputWrapper">
+        <label for="last-name">Last Name: </label>
+        <input id="last-name" type="text" formControlName="lastName" />
+      </div>
+      <div *ngIf="lastName">
+        <div *ngIf="lastName.hasError('required')">LastName is required.</div>
+        <div *ngIf="lastName.hasError('minlength')">
+          LastName must be at least 5 characters long.
+        </div>
+      </div>
+    </div>
+    <div formGroupName="address" class="inputBlock">
+      <h2>Address</h2>
+      <div class="inputWrapper">
+        <label for="city">City: </label>
+        <input id="city" type="text" formControlName="city" />
+      </div>
+      <div class="inputWrapper">
+        <label for="street">Street: </label>
+        <input id="street" type="text" formControlName="street" />
+      </div>
+      <div class="inputWrapper">
+        <label for="house">House: </label>
+        <input id="house" type="text" formControlName="house" />
+      </div>
+      <div class="inputWrapper">
+        <label for="apartment">Apartment: </label>
+        <input id="apartment" type="text" formControlName="apartment" />
+      </div>
+    </div>
+    <button type="submit" [disabled]="!userForm.valid">Submit</button>
+  </form>
+  <hr />
+  <div class="userInfo">
+    <p>Form Value: {{ userForm.value | json }}</p>
+    <p>Form Status: {{ userForm.status }}</p>
+    <button type="button" (click)="updateProfile()">Update Profile</button>
+  </div>
+</div>
