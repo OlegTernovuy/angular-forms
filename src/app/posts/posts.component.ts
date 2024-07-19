@@ -5,9 +5,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs';
+import { of, catchError } from 'rxjs';
 
 import { DataService } from '../data.service';
 import { Post } from './post.model';
@@ -15,7 +15,7 @@ import { Post } from './post.model';
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css',
 })
@@ -33,16 +33,16 @@ export class PostsComponent {
 
   private fetchPosts(): void {
     this.dataService
-    .getData()
-    .pipe(
-      catchError((err) => {
-        console.error('Error fetching data', err);
-        return of([]);
-      })
-    )
-    .subscribe((result: Post[]) => {
-      this.data = result;
-    });
+      .getData()
+      .pipe(
+        catchError((err) => {
+          console.error('Error fetching data', err);
+          return of([]);
+        })
+      )
+      .subscribe((result: Post[]) => {
+        this.data = result;
+      });
   }
 
   ngOnInit(): void {
@@ -65,5 +65,9 @@ export class PostsComponent {
           this.fetchPosts();
         });
     }
+  }
+
+  delete(id: number): void {
+    this.dataService.deletePost(id).subscribe(() => this.fetchPosts());
   }
 }

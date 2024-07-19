@@ -1,0 +1,12 @@
+<h2>The most popular posts</h2>
+<div class="heroes-menu">
+  <ul *ngFor="let post of posts">
+    <li>
+      <a routerLink="/detail/{{ post.id }}">
+        {{ post.title }}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<app-search-post></app-search-post>

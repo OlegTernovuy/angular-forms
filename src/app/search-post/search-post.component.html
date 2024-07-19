@@ -1,0 +1,17 @@
+<div>
+  <label for="search-input">Find your post!</label>
+  <input
+    #searchInput
+    id="search-input"
+    type="text"
+    (input)="search(searchInput.value)"
+  />
+
+  <ul *ngFor="let post of posts$ | async">
+    <li>
+      <a routerLink="/detail/{{ post.id }}">
+        {{ post.title }}
+      </a>
+    </li>
+  </ul>
+</div>
