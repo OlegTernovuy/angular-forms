@@ -10,7 +10,7 @@ import { of } from 'rxjs';
 import { catchError } from 'rxjs';
 
 import { DataService } from '../data.service';
-import { Post, sendedPost } from './post.model';
+import { Post } from './post.model';
 
 @Component({
   selector: 'app-posts',
@@ -22,28 +22,31 @@ import { Post, sendedPost } from './post.model';
 export class PostsComponent {
   data: Post[] = [];
 
-  postedData: sendedPost | null = null;
+  postedData: Post | null = null;
 
   constructor(private dataService: DataService) {}
 
   postFormData = new FormGroup({
     title: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
-    userId: new FormControl(1),
   });
 
-  ngOnInit(): void {
+  private fetchPosts(): void {
     this.dataService
-      .getData()
-      .pipe(
-        catchError((err) => {
-          console.error('Error fetching data', err);
-          return of([]);
-        })
-      )
-      .subscribe((result: Post[]) => {
-        this.data = result;
-      });
+    .getData()
+    .pipe(
+      catchError((err) => {
+        console.error('Error fetching data', err);
+        return of([]);
+      })
+    )
+    .subscribe((result: Post[]) => {
+      this.data = result;
+    });
+  }
+
+  ngOnInit(): void {
+    this.fetchPosts();
   }
 
   onSubmit() {
@@ -56,9 +59,10 @@ export class PostsComponent {
             return of(null);
           })
         )
-        .subscribe((result: sendedPost | null) => {
+        .subscribe((result: Post | null) => {
           this.postedData = result;
           this.postFormData.reset();
+          this.fetchPosts();
         });
     }
   }
