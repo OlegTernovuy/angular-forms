@@ -7,15 +7,15 @@ import { Post } from './posts/post.model';
   providedIn: 'root',
 })
 export class DataService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private apiUrl = 'http://localhost:3001';
 
   constructor(private http: HttpClient) {}
 
   getData(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.apiUrl}?_limit=10`);
+    return this.http.get<Post[]>(`${this.apiUrl}/posts`);
   }
 
   postData(post: any): Observable<Post> {
-    return this.http.post<Post>(`${this.apiUrl}`, post);
+    return this.http.post<Post>(`${this.apiUrl}/posts`, post);
   }
 }
