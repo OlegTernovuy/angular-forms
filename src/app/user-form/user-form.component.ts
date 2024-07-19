@@ -8,6 +8,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { catchError, of, switchMap } from 'rxjs';
 
 export function numberValidator(
   control: AbstractControl
@@ -64,7 +65,20 @@ export class UserFormComponent {
   }
 
   onSubmit() {
-    alert(JSON.stringify(this.userForm.value));
-    this.userForm.reset();
+    of(this.userForm.value)
+      .pipe(
+        switchMap((formValue) => {
+          console.log('Form submitted: ', formValue);
+          return of(null);
+        }),
+        catchError((err) => {
+          console.error('Failed to submit form: ', err);
+          return of(null);
+        })
+      )
+      .subscribe(() => {
+        alert(JSON.stringify(this.userForm.value));
+        this.userForm.reset();
+      });
   }
 }
