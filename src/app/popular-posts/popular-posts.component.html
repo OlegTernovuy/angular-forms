@@ -1,10 +1,18 @@
 <h2>The most popular posts</h2>
-<div class="heroes-menu">
-  <ul *ngFor="let post of posts">
-    <li>
-      <a routerLink="/detail/{{ post.id }}">
-        {{ post.title }}
-      </a>
+<div>
+  <ul class="posts-list">
+    <li *ngFor="let post of posts">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>{{ post.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>{{ post.body }}</mat-card-content>
+        <mat-card-actions align="end">
+          <button routerLink="/detail/{{ post.id }}" mat-raised-button>
+            More details
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </li>
   </ul>
 </div>

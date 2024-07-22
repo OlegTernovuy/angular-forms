@@ -1,25 +1,18 @@
-<main class="userPosts">
-  <div class="sendPost">
+<main class="user-posts">
+  <div class="send-post">
     <h4>Send Post</h4>
     <form [formGroup]="postFormData" (ngSubmit)="onSubmit()">
-      <label for="username">Title:</label>
-      <input
-        type="text"
-        id="title"
-        formControlName="title"
-        name="title"
-        required
-      />
-
-      <label for="body">Body:</label>
-      <input
-        type="text"
-        id="body"
-        formControlName="body"
-        name="body"
-        required
-      />
-      <button type="submit" [disabled]="!postFormData.valid">Send Post</button>
+      <mat-form-field>
+        <mat-label>Title:</mat-label>
+        <input matInput formControlName="title" type="text" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Body:</mat-label>
+        <input matInput formControlName="body" type="text" required />
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="!postFormData.valid">
+        Send Post
+      </button>
     </form>
     <div *ngIf="postedData">
       <p>You send this data:</p>
@@ -32,10 +25,19 @@
   <div *ngIf="data">
     <h3>Data from API</h3>
     <ul>
-      <li *ngFor="let item of data">
-        <a routerLink="/detail/{{ item.id }}">{{ item.title }}</a>
-        <button type="button" title="delete post"
-        (click)="delete(item.id)">x</button>
+      <li *ngFor="let post of data">
+        <mat-card appearance="outlined">
+          <mat-card-header>
+            <mat-card-title>{{ post.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>{{ post.body }}</mat-card-content>
+          <mat-card-actions align="end">
+            <button routerLink="/detail/{{ post.id }}" mat-raised-button>
+              More details
+            </button>
+            <button (click)="delete(post.id)" mat-button>Delete</button>
+          </mat-card-actions>
+        </mat-card>
       </li>
     </ul>
   </div>

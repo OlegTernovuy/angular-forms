@@ -4,10 +4,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { of, catchError } from 'rxjs';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { of, catchError } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { DataService } from '../data.service';
 import { Post } from './post.model';
@@ -15,7 +19,15 @@ import { Post } from './post.model';
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule,
+  ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css',
 })
