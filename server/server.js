@@ -1,14 +1,21 @@
 const jsonServer = require('json-server');
-const middleware = jsonServer.defaults();
-const server = jsonServer.create();
 
 const postsData = require('./data/posts.json');
+
+const middleware = jsonServer.defaults();
+const server = jsonServer.create();
 
 server.use(middleware);
 server.use(jsonServer.bodyParser);
 
 server.get('/posts', (req, res) => {
-  res.status(200).send(postsData.posts);
+  const { title } = req.query;
+  if (title) {
+    const filteredProducts = postsData.posts.filter(post => post.title.toLowerCase().includes(title.toLocaleLowerCase()))
+    res.status(200).send(filteredProducts);
+  } else {
+    res.status(200).send(postsData.posts);
+  }
 });
 
 server.get('/posts/:id', (req, res) => {

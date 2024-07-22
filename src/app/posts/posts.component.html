@@ -32,7 +32,11 @@
   <div *ngIf="data">
     <h3>Data from API</h3>
     <ul>
-      <li *ngFor="let item of data">{{ item.title }}</li>
+      <li *ngFor="let item of data">
+        <a routerLink="/detail/{{ item.id }}">{{ item.title }}</a>
+        <button type="button" title="delete post"
+        (click)="delete(item.id)">x</button>
+      </li>
     </ul>
   </div>
 </main>
