@@ -1,8 +1,11 @@
-import { CommonModule, Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
 import { catchError, of } from 'rxjs';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { Post } from '../posts/post.model';
 import { DataService } from '../data.service';
@@ -10,7 +13,13 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-post-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+  ],
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.css',
 })

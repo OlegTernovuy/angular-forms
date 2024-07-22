@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+import { PopularPostsComponent } from './popular-posts/popular-posts.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PostsComponent } from './posts/posts.component';
-import { PopularPostsComponent } from './popular-posts/popular-posts.component';
-import { PostDetailComponent } from './post-detail/post-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/popularPosts', pathMatch: 'full' },
@@ -17,7 +17,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

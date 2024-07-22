@@ -1,3 +1,7 @@
+## First run json-server
+
+Run `npm run mock:server` for a mock server
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

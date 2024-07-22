@@ -1,15 +1,17 @@
 <div *ngIf="post">
   <h4>Post id: {{ post.id }} with title: {{ post.title }}</h4>
-
   <form (ngSubmit)="onSubmit()">
-    <label for="post-title">Enter new title:</label>
-    <input
-      type="text"
-      id="post-title"
-      [(ngModel)]="post.title"
-      [ngModelOptions]="{standalone: true}"
-      placeholder="Post tile"
-    />
-    <button type="submit">Submit</button>
+    <mat-form-field class="input-full-width">
+      <mat-label>Enter new title:</mat-label>
+      <input
+        matInput
+        [(ngModel)]="post.title"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Post tile"
+        type="text"
+        required
+      />
+    </mat-form-field>
+    <button mat-stroked-button type="submit">Submit</button>
   </form>
 </div>

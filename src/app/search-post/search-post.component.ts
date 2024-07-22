@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -15,7 +19,14 @@ import { Post } from '../posts/post.model';
 @Component({
   selector: 'app-search-post',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatButtonModule,
+  ],
   templateUrl: './search-post.component.html',
   styleUrl: './search-post.component.css',
 })
